@@ -11,33 +11,11 @@ namespace CRUD_application_2.Controllers
         // GET: User
         public ActionResult Index()
         {
-            using CRUD_application_2.Models;
-            using System.Linq;
-            using System.Web.Mvc;
-
-
-            namespace CRUD_application_2.Controllers
-    {
-        public class UserController : Controller
-        {
-            public static System.Collections.Generic.List<User> userlist = new System.Collections.Generic.List<User>();
-
-            // GET: User
-            public ActionResult Index()
-            {
-                // Retrieve the list of users from the userlist
-                var users = userlist.ToList();
-
-                // Pass the list of users to the Index view
-                return View(users);
-            }
-             
-                    // Rest of the code...
-            return View();
-                   
+            // Return the userlist to the Index view
+            return View(userlist);
         }
- 
-      // GET: User/Details/5
+
+        // GET: User/Details/5
         public ActionResult Details(int id)
         {
             // Retrieve the user with the specified ID from the userlist
@@ -55,10 +33,12 @@ namespace CRUD_application_2.Controllers
  
       // POST: User/Create
         [HttpPost]
-        public ActionResult Create(User user)
+        public ActionResult Create()
         {
             // Add the user to the userlist
+            User user = new User();
             userlist.Add(user);
+                       
 
             // Redirect to the Index action to display the updated list of users
             return RedirectToAction("Index");
